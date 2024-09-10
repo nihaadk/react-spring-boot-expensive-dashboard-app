@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,6 +13,7 @@ import com.nk.restapi.io.ExpenseResponse;
 import com.nk.restapi.service.ExpenseService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is Controller for Expense module
@@ -20,6 +22,8 @@ import lombok.RequiredArgsConstructor;
  */
 @RestController()
 @RequiredArgsConstructor
+@Slf4j
+@CrossOrigin("*")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
@@ -32,7 +36,12 @@ public class ExpenseController {
      */
     @GetMapping("/expensess")
     public List<ExpenseResponse> getExpenses() {
+        log.info("API GET /expensess called");
+
         List<ExpensDto> expenses = expenseService.getAllExpense();
+
+        log.info("Printing the data from service {}", expenses);
+
         List<ExpenseResponse> listOfExpenseResponse = expenses.stream()
                 .map(expensDto -> mapToExpenseResponse(expensDto))
                 .collect(Collectors.toList());

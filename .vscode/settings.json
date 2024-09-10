@@ -20,5 +20,15 @@
   },
   "peacock.color": "#42b883",
   "java.compile.nullAnalysis.mode": "automatic",
-  "java.configuration.updateBuildConfiguration": "interactive"
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "maven.terminal.favorites": [
+    {
+      "command": "spring-boot:start",
+      "debug": false
+    },
+    {
+      "command": "spring-boot:stop",
+      "debug": false
+    }
+  ]
 }

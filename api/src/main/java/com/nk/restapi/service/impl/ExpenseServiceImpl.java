@@ -12,6 +12,7 @@ import com.nk.restapi.repository.ExpenseRepository;
 import com.nk.restapi.service.ExpenseService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is Service Implementation for Expense module
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ExpenseServiceImpl implements ExpenseService {
 
     private final ExpenseRepository expenseRepository;
@@ -32,7 +34,11 @@ public class ExpenseServiceImpl implements ExpenseService {
      */
     @Override
     public List<ExpensDto> getAllExpense() {
+
         List<ExpenseEntity> list = expenseRepository.findAll();
+
+        log.info("Printing the data from repository {}", list);
+
         List<ExpensDto> listOfExpense = list.stream().map(expensEntity -> mapToExpensDto(expensEntity))
                 .collect(Collectors.toList());
         return listOfExpense;
