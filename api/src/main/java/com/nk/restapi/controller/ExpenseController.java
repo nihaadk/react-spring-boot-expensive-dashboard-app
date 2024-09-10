@@ -13,6 +13,11 @@ import com.nk.restapi.service.ExpenseService;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * This is Controller for Expense module
+ * 
+ * @author Nihad K.
+ */
 @RestController()
 @RequiredArgsConstructor
 public class ExpenseController {
@@ -20,6 +25,11 @@ public class ExpenseController {
     private final ExpenseService expenseService;
     private final ModelMapper modelMapper;
 
+    /**
+     * Fetch all expenses from the database
+     * 
+     * @return List of ExpenseResponse
+     */
     @GetMapping("/expensess")
     public List<ExpenseResponse> getExpenses() {
         List<ExpensDto> expenses = expenseService.getAllExpense();
@@ -30,6 +40,12 @@ public class ExpenseController {
         return listOfExpenseResponse;
     }
 
+    /**
+     * Mapper method for converting ExpensDto to ExpenseResponse
+     * 
+     * @param expensDto
+     * @return ExpenseResponse
+     */
     private ExpenseResponse mapToExpenseResponse(ExpensDto expensDto) {
         return modelMapper.map(expensDto, ExpenseResponse.class);
     }
