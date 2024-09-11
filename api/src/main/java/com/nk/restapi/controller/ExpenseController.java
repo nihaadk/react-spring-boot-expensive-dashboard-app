@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nk.restapi.dto.ExpensDto;
 import com.nk.restapi.io.ExpenseResponse;
@@ -23,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController()
 @RequiredArgsConstructor
 @Slf4j
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 public class ExpenseController {
 
     private final ExpenseService expenseService;
@@ -34,7 +35,7 @@ public class ExpenseController {
      * 
      * @return List of ExpenseResponse
      */
-    @GetMapping("/expensess")
+    @GetMapping("/expenses")
     public List<ExpenseResponse> getExpenses() {
         log.info("API GET /expensess called");
 
